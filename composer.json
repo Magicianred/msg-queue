@@ -1,0 +1,13 @@
+{
+    "name": "lee/msg-queue",
+    "description": "Simple message queue for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "peter279k",
+            "email": "peter279k@gmail.com"
+        }
+    ],
+    "require": {}
+}

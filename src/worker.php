@@ -1,17 +1,15 @@
 <?php
-	require "queue.php";
-	
 	class Worker {
 		/**
 		* Store the semaphore queue handler.
 		* @var resource
 		*/
-		private $queue = NULL;
+		private $queue = null;
 		/**
 		* Store an instance of the read Message
 		* @var Message
 		*/
-		private $message = NULL;
+		private $message = null;
 		/**
 		* Constructor: Setup our enviroment, load the queue and then
 		* process the message.
@@ -23,15 +21,17 @@
 			$this->process();
 		}
 		private function process() {
-			$messageType = NULL;
+			$messageType = null;
 			$messageMaxSize = 1024;
+			$queueStart = 1;
 			// Loop over the queue
-			while(msg_receive($this->queue, QUEUE_TYPE_START, $messageType, $messageMaxSize, $this->message)) {
+			while(msg_receive($this->queue, $queueStart, $messageType, $messageMaxSize, $this->message)) {
 				// We have the message, fire back
+				
 				$this->complete($messageType, $this->message);
 				// Reset the message state
-				$messageType = NULL;
-				$this->message = NULL;
+				$messageType = null;
+				$this->message = null;
 			}    
 		}
 		/**
@@ -42,9 +42,8 @@
 		*/
 		private function complete($messageType, Message $message) {
 			// Generic method
+			//do your business logic here
 			echo $message->getKey();    
 		}
 	}
-	
-	$worker = new Worker;
 ?>
